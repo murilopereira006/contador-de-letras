@@ -27,26 +27,31 @@ function App() {
 
   return (
     <>
-      <div>
-        <textarea value={text()} onInput={handleTextareaChange} />
+      <div class="textarea-container">
+        <textarea value={text()} onInput={handleTextareaChange} placeholder='Escreva aqui!' />
       </div>
-      <div>
-        <table>
-        <thead>
-          <tr>
-            <th>Caractere</th>
-            <th>Número de Vezes</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Array.from(charCount()).map(([char, count]) => (
+      <div class="table-container">
+        {
+          text() ? 
+          <table>
+          <tbody>
             <tr>
-              <td>{char}</td>
-              <td>{count}</td>
+            <th>Caractere</th>
+              {Array.from(charCount()).map(([char, count]) => (
+                <td>{char}</td>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+            <tr>
+              <th>Número de Vezes</th>
+              {Array.from(charCount()).map(([char, count]) => (
+                <td>{count}</td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+        :
+        null
+        }
       </div>
     </>
   )
